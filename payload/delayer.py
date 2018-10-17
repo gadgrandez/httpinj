@@ -7,8 +7,6 @@ from common import *
 class payload(CommonPayload):
     load_delay = 5
     hash_secret = "change me"
-    bypass_name = "httpinj_bp"
-    bypass_ttl = 10
     content = """
     <html>
     <body>
