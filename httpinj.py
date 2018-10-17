@@ -59,7 +59,7 @@ def main(argv):
 
     def printHelp():
         print """
-        (python2.7 |./)httpinj [-i interface] [-r regexp] [-p payload] expression
+        (python2.7 |./)httpinj.py [-i interface] [-r regexp] [-p payload] expression
 
         -i --interface Listen on network device (defaults to eth0).
 
