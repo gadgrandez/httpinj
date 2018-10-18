@@ -100,7 +100,7 @@ def main(argv):
 
 
     payload_mod = importlib.import_module("payload." + payloadname)
-    sniff(iface=interface, filter=' '.join(args), prn=determine_packet)
+    sniff(iface=interface, filter=' '.join(args), prn=determine_packet, store=0)
 
 if __name__ == "__main__":
     main(sys.argv)
