@@ -26,7 +26,8 @@ def determine_packet(packet):
 
 # Given a flagged packet, injects a packet
 def inject_packet (flagged_packet):
-
+    global injection_ether
+    global injection_count
     http_reponse = payload_mod.payload.http_payload()
 
     # Spin up a new packet
@@ -56,6 +57,8 @@ def inject_packet (flagged_packet):
     del to_inject[TCP].chksum
     # Send the packet!
     sendp(to_inject, iface=injection_interface, verbose=False)
+    injection_count += 1
+    print "injected: {}".format(injection_count)
     # print "Sent %s > %s" % (to_inject[IP].src, to_inject[IP].dst)
 
 
@@ -65,7 +68,7 @@ def main(argv):
     global regex
     global injection_interface
     global injection_ether
-
+    global injection_count
 
     def printHelp():
         print """
@@ -93,6 +96,7 @@ def main(argv):
     injection_interface = ''
     regex = r'^GET \/ HTTP\/1\.1'
     injection_ether = None
+    injection_count = 0
 
     try:
         opts, args = getopt.getopt(argv[1:], 'i:r:p:d:j:h', ['interface=', 'regexp=', 'payloadname=', 'dst_eth=', 'injection_interface=', 'help'])
